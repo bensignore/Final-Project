@@ -1,0 +1,2150 @@
+// Sets current scene to zero, allowing for multiple slides 
+var currentScene = 0;
+
+//universal scores variable to be used later
+var scores;
+
+
+
+// bitmoji to be used in every scene
+var drawBitmoji = function(bitmojiX, bitmojiY,bitmojiHeight, color) {
+
+/*SHIRT AND CHAINS FROM HERE*/
+noStroke();
+
+fill(color); //shirt color
+
+rect(bitmojiX-(bitmojiHeight/150*49),
+    bitmojiY+(bitmojiHeight/150*42),
+    bitmojiHeight/150*100, 
+    bitmojiHeight/150*100); //shirt
+    
+    
+stroke(192,192,192); // chain color
+    arc(bitmojiX+(bitmojiHeight/150),
+    bitmojiY+(bitmojiHeight/150*43),
+    bitmojiHeight/150*41,
+    bitmojiHeight/150*57,0 ,180); // chain1
+    
+    arc(bitmojiX+bitmojiHeight/150,
+    bitmojiY+(bitmojiHeight/150*37),
+    bitmojiHeight/150*41,
+    bitmojiHeight/150*46,0 ,180); //chain2
+    
+fill(192,192,192); // silver color
+    rect(bitmojiX-(bitmojiHeight/150*3), 
+    bitmojiY+(bitmojiHeight/150*59), 
+    bitmojiHeight/150*5,
+    bitmojiHeight/150*5); // hand sign
+    
+curve(bitmojiX+(bitmojiHeight/150*31),
+    bitmojiY+(bitmojiHeight/150*227), 
+    bitmojiX+(bitmojiHeight/150*3),
+    bitmojiY+(bitmojiHeight/150*95),
+    bitmojiX+(bitmojiHeight/150*1),
+    bitmojiY+(bitmojiHeight/150*72),
+    bitmojiX+(bitmojiHeight/150*103),
+    bitmojiY+(bitmojiHeight/150*80)); //cornicello
+    
+stroke(0, 0, 0); //decal outline
+    fill(255, 174, 0); // color of decal
+    quad(bitmojiX+(bitmojiHeight/150*32),
+    bitmojiY+(bitmojiHeight/150*98),
+    bitmojiX+(bitmojiHeight/150*23),
+    bitmojiY+(bitmojiHeight/150*65),
+    bitmojiX+(bitmojiHeight/150*18),
+    bitmojiY+(bitmojiHeight/150*75),
+    bitmojiX+(bitmojiHeight/150*43),
+    bitmojiY+(bitmojiHeight/150*75)); //decal
+    
+fill(255,255,255); //decal eye color
+
+    ellipse(bitmojiX+(bitmojiHeight/150*32),
+    bitmojiY+(bitmojiHeight/150*81),
+    bitmojiHeight/150*3,bitmojiHeight/150*5); //decal eye
+/* TO HERE */
+
+//Head
+noStroke();
+fill(234, 189, 157); // skin tone
+
+ellipse(bitmojiX+(bitmojiHeight/150),
+    bitmojiY+(bitmojiHeight/150),
+    bitmojiHeight/150*85,
+    bitmojiHeight/150*100); //head
+    
+fill(140, 104, 74); // fill for hair color
+    // hair 1
+quad(bitmojiX-(bitmojiHeight/150*31), 
+    bitmojiY-(bitmojiHeight/150*38),
+    bitmojiX-(bitmojiHeight/150*37),
+    bitmojiY-(bitmojiHeight/150*28),
+    bitmojiX+(bitmojiHeight/150*2),
+    bitmojiY-(bitmojiHeight/150*46),
+    bitmojiX-(bitmojiHeight/150*49),
+    bitmojiY-(bitmojiHeight/150*7)); 
+//hair2
+quad(bitmojiX-(bitmojiHeight/150*14), 
+    bitmojiY-(bitmojiHeight/150*24),
+    bitmojiX-(bitmojiHeight/150*24),
+    bitmojiY-(bitmojiHeight/150*7),
+    bitmojiX-(bitmojiHeight/150*11),
+    bitmojiY-(bitmojiHeight/150*49),
+    bitmojiX+(bitmojiHeight/150*27),
+    bitmojiY-(bitmojiHeight/150*46)); 
+//hair3
+quad(bitmojiX-(bitmojiHeight/150*12),
+    bitmojiY-(bitmojiHeight/150*42),
+    bitmojiX-(bitmojiHeight/150*39),
+    bitmojiY-(bitmojiHeight/150*9),
+    bitmojiX+(bitmojiHeight/150*5),
+    bitmojiY-(bitmojiHeight/150*40),
+    bitmojiX+(bitmojiHeight/150*20),
+    bitmojiY-(bitmojiHeight/150*14)); 
+// hair4
+quad(bitmojiX-(bitmojiHeight/150*18),
+    bitmojiY-(bitmojiHeight/150*46),
+    bitmojiX-(bitmojiHeight/150*35),
+    bitmojiY-(bitmojiHeight/150*28),
+    bitmojiX+(bitmojiHeight/150*26),
+    bitmojiY-(bitmojiHeight/150*40),
+    bitmojiX+(bitmojiHeight/150*54),
+    bitmojiY-(bitmojiHeight/150*14));
+//hair 5
+ellipse(bitmojiX-(bitmojiHeight/150*1),
+    bitmojiY-(bitmojiHeight/150*47),
+    bitmojiHeight/150*31,
+    bitmojiHeight/150*11); 
+// hair 6
+ellipse(bitmojiX+(bitmojiHeight/150*12),
+    bitmojiY-(bitmojiHeight/150*42),
+    bitmojiHeight/150*30,
+    bitmojiHeight/150*11); 
+// hair 7
+ellipse(bitmojiX-(bitmojiHeight/150*13),
+    bitmojiY-(bitmojiHeight/150*44),
+    bitmojiHeight/150*30,
+    bitmojiHeight/150*11); 
+// hair 8
+ellipse(bitmojiX-(bitmojiHeight/150*28),
+    bitmojiY-(bitmojiHeight/150*36),
+    bitmojiHeight/150*11,
+    bitmojiHeight/150*20); 
+
+fill (0,0,0);
+//creates left eye
+ellipse(bitmojiX-(bitmojiHeight/150*16),
+    bitmojiY+bitmojiHeight/150,
+    bitmojiHeight/150*10,bitmojiHeight/150*10); 
+// creates right eye
+ellipse(bitmojiX+(bitmojiHeight/150*14),
+    bitmojiY+(bitmojiHeight/150), 
+    bitmojiHeight/150*10,
+    bitmojiHeight/150*10); 
+    
+stroke(0, 0, 0);
+
+fill(234, 189, 157); // skin tone
+// creates nose
+bezier(bitmojiX+(bitmojiHeight/150),
+    bitmojiY+(bitmojiHeight/150),
+    bitmojiX+(bitmojiHeight/150*8),
+    bitmojiY+(bitmojiHeight/150*21),
+    bitmojiX+(bitmojiHeight/150*11),
+    bitmojiY+(bitmojiHeight/150*22), 
+    bitmojiX+(bitmojiHeight/150),
+    bitmojiY+(bitmojiHeight/150*21)); 
+
+arc(bitmojiX+(bitmojiHeight/150*1), 
+bitmojiY+(bitmojiHeight/150*30),
+bitmojiHeight/150*37,
+bitmojiHeight/150*7,0,180);
+
+/*ALL OF THIS CREATES A NAME FROM HERE TO */
+
+    fill(color); //shirt color for inside the lines
+    
+curve(bitmojiX+(bitmojiHeight/150*191),
+    bitmojiY+(bitmojiHeight/150*25),
+    bitmojiX-(bitmojiHeight/150*19),
+    bitmojiY+(bitmojiHeight/150*72),
+    bitmojiX-(bitmojiHeight/150*31),
+    bitmojiY+(bitmojiHeight/150*91),
+    bitmojiX-(bitmojiHeight/150*224),
+    bitmojiY+(bitmojiHeight/150*139)); //S
+    
+    line(bitmojiX-(bitmojiHeight/150*45),
+    bitmojiY+(bitmojiHeight/150*96),
+    bitmojiX-(bitmojiHeight/150*45),
+    bitmojiY+(bitmojiHeight/150*71));
+
+arc(bitmojiX-(bitmojiHeight/150*43), 
+    bitmojiY+(bitmojiHeight/150*89),
+    bitmojiHeight/150*11,
+    bitmojiHeight/150*13,-90,90);
+
+arc(bitmojiX-(bitmojiHeight/150*43), 
+    bitmojiY+(bitmojiHeight/150*78),
+    (bitmojiHeight/150*11),
+    bitmojiHeight/150*13,-90,90);
+
+/*HERE*/
+
+};
+
+
+
+
+//button constructor
+var Button = function(config) {
+  this.x = config.x || 0;
+  this.y = config.y || 0;
+  this.width = config.width || 150;
+  this.height = config.height || 50;
+  this.label = config.label || "Click";
+  this.color = config.color || fill(255, 255, 255);
+  this.textColor = config.textColor || color(0, 0, 0);
+  this.onClick = config.onClick || function() {};
+  this.textSize = config.textSize || 19;
+};
+//draw button method
+Button.prototype.draw = function() {
+  fill(this.color);
+  rect(this.x, this.y, this.width, this.height, 5);
+  fill(this.textColor);
+  textSize(this.textSize);
+  text(this.label, this.x+74, this.y+this.height/2);
+};
+// handle mouse click button function
+Button.prototype.isMouseInside = function() {
+  return mouseX > this.x &&
+         mouseX < (this.x + this.width) &&
+         mouseY > this.y &&
+         mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+  if (this.isMouseInside()) {
+      this.onClick();
+  }
+};
+
+//creates instances of buttons in order to be used in multiple different slides 
+
+/*splash screen button*/
+var startButton = new Button({
+    x: 130,
+    y: 283,
+    color: color(0, 0, 0),
+    textColor: color(255, 255, 255),
+    label: "START",
+    onClick: function(){
+        currentScene = 1;
+    }
+});
+
+// instances of buttons to be used on the home screen
+
+/*home button for every slide*/
+var homeButton = new Button({
+    label: "Home",
+    onClick: function(){
+        currentScene = 1;
+    }
+});
+
+/*back button to return to brackets by year*/
+var backButton = new Button({
+    x: 250,
+    label: "Back",
+    onClick: function(){
+        currentScene = 13;
+    }
+});
+
+/*list button to take you to a list of national champs by year*/
+var listButton = new Button({
+    x: 40,
+    y: 138,
+    textSize: 14,
+    label: "National Champions \n By Year",
+    onClick: function() {
+        currentScene = 12;
+    }
+});
+
+/*bracket button on home screen to take you to list of brackets*/
+var bracketsButton = new Button({
+    x: 220, 
+    y: 138,
+    textSize: 18,
+    label: "Brackets By Year",
+    onClick: function() {
+        currentScene = 13;
+    }
+});
+
+/*top games screen button*/
+var topGamesButton = new Button({
+    x: 40,
+    y: 225,
+    textSize: 14,
+    label: "Top 10 Games\nOf The Era",
+    onClick: function() {
+        currentScene = 25;
+    }
+});
+
+/*controversies screen button*/
+var controversiesButton = new Button({
+    x: 220,
+    y: 225,
+    textSize: 14,
+    label: "Controversies",
+    onClick: function() {
+        currentScene = 26;
+    }
+});
+
+/*definition of the 4 team playoff screen button*/
+var definitionButton = new Button({
+    x: 130,
+    y: 300,
+    textSize: 12,
+    label: "How Did The\n 4-Team Playoff Work?",
+    onClick: function() {
+        currentScene = 14;
+    }
+});
+
+// array with a list of NY6 bowls with names and locations
+var bowls = ["Orange Bowl, Miami, FL", 
+"Cotton Bowl, Arlington, TX", 
+"Sugar Bowl, New Orleans, LA", 
+"Rose Bowl, Pasedena, CA", 
+"Fiesta Bowl, Glendale, AZ", 
+"Chic-Fil-A Bowl, Atlanta, GA"];
+
+// list of host sites for national championship games with names and locations
+var hostSites = [
+    "AT&T Stadium, Arlington, TX", 
+    "University of Phoenix Stadium, Glendale, AZ", 
+    "Raymond James Stadium, Tampa, FL", 
+    "Mercedes-Benz Stadium, Atlanta, GA", 
+    "Levi's Stadium, Santa Clara, California", 
+    "Mercedes-Benz Superdome, New Orleans, LA", 
+    "Hard Rock Stadium, Miami, FL", 
+    "Lucas Oil Stadium, Indianapolis, IN", 
+    "SoFi Stadium, Inglewood, CA", 
+    "NRG Stadium, Houston, TX"];
+
+// team constructor. Gives each team a name, nickname, conference, primary and secondary color, state and font. Object accepts a config in order to continue to accept new inputs 
+
+var Team = function(config) {
+    this.name = config.name || "BLANK";
+    this.nickname = config.nickname || "None";
+    this.conference = config.conference || "blank";
+    this.primaryColor = config.primaryColor || color(0, 0, 0);
+    this.secondaryColor = config.secondaryColor || color(255, 255, 255);
+    this.state = config.state || "Home State";
+    this.font = config.font || textFont("Times New Roman");
+};
+
+// Instances of teams, every team to have made the 4-team playoff is included
+//From here
+var Alabama = new Team({
+    name: "Alabama",
+    nickname: "Crimson Tide",
+    conference: "SEC", 
+    primaryColor: color(158, 27, 50),
+    state: "AL"
+});
+
+var Clemson = new Team({
+    name: "Clemson", 
+    nickname: "Tigers",
+    conference: "ACC",
+    primaryColor: color(245, 102, 0),
+    secondaryColor: color(82, 45, 128)
+});
+
+var Georgia = new Team({
+    name: "Georgia",
+    nickname: "Bulldogs",
+    conference: "SEC", 
+    primaryColor: color(186, 12, 47),
+    secondaryColor: color(0, 0, 0), 
+    state: "GA"
+});
+
+var OhioState = new Team({
+    name: "Ohio State",
+    nickname: "Buckeyes",
+    conference: "Big Ten", 
+    primaryColor: color(193, 19, 61), 
+    secondaryColor: color(204, 204, 204),
+    state: "OH"
+});
+
+var Michigan = new Team({
+    name: "Michigan", 
+    nickname: "Wolverines",
+    conference: "Big Ten",
+    primaryColor: color(0, 39, 76),
+    secondaryColor: color(255, 203, 5),
+    state: "MI"
+});
+
+var LSU = new Team({
+    name: "LSU", 
+    nickname: "Tigers",
+    conference: "SEC",
+    primaryColor: color(88, 45, 131),
+    secondaryColor: color(253, 200, 44),
+    state: "LA"
+});
+
+var Washington = new Team({
+    name: "Washington", 
+    nickname: "Huskies",
+    conference: "PAC-12",
+    primaryColor: color(51, 0, 111),
+    secondaryColor: color(232, 211, 162),
+    state: "WA"
+});
+
+var Oregon = new Team({
+    name: "Oregon", 
+    nickname: "Ducks",
+    conference: "PAC-12",
+    primaryColor: color(4, 106, 56), 
+    secondaryColor: color(255, 234, 15),
+    state: "OR"
+});
+
+var TCU = new Team({
+    name: "TCU", 
+    nickname: "Horned Frogs",
+    conference: "Big XII",
+    primaryColor: color(77, 25, 121), 
+    state: "TX"
+});
+
+var Oklahoma = new Team({
+    name: "Oklahoma", 
+    nickname: "Sooners",
+    conference: "Big XII",
+    primaryColor: color(132, 23, 25), // Crimson
+    secondaryColor: color(239, 232, 199), // Cream
+    state: "OK"
+});
+
+var NotreDame = new Team({
+    name: "Notre Dame", 
+    nickname: "Fighting Irish",
+    conference: "Independent",
+    primaryColor: color(12, 35, 64), 
+    secondaryColor: color(201, 151, 0), 
+    state: "IN"
+});
+
+var FloridaState = new Team({
+    name: "Florida State", 
+    nickname: "Seminoles",
+    conference: "ACC",
+    primaryColor: color(120, 47, 64), 
+    secondaryColor: color(206, 184, 136),
+    state: "FL"
+});
+
+var MichiganState = new Team({
+    name: "Michigan State", 
+    nickname: "Spartans",
+    conference: "Big Ten",
+    primaryColor: color(24, 69, 59), 
+    state: "MI"
+});
+
+var Cincinnati = new Team({
+    name: "Cincinnati", 
+    nickname: "Bearcats",
+    conference: "American",
+    primaryColor: color(0, 0, 0), // Black
+    secondaryColor: color(212, 0, 0), // Red
+    state: "OH"
+});
+
+var Texas = new Team({
+    name: "Texas", 
+    nickname: "Longhorns",
+    conference: "Big XII",
+    primaryColor: color(204, 88, 0), // Burnt Orange
+    state: "TX"
+});
+
+//To here
+
+// Instances of buttons for the list of national champions. Accepts the name, year, and color of each national champion. Each button takes the user to a new page with a description of each national champion
+
+// from here
+var byYear2015Button = new Button({
+    x: 25, 
+    y: 100,
+    color: OhioState.primaryColor,
+    textColor: OhioState.secondaryColor,
+    textSize: 18,
+    label: " 2015: \n Ohio State",
+    onClick: function() {
+        currentScene = 15;
+    }
+});
+
+var byYear2016Button = new Button({
+    x: 25, 
+    y: 155,
+    color: Alabama.primaryColor,
+    textColor: Alabama.secondaryColor,
+    textSize: 18,
+    label: " 2016: \n Alabama",
+    onClick: function() {
+        currentScene = 16;
+    }
+});
+
+var byYear2017Button = new Button({
+    x: 25, 
+    y: 210,
+    color: Clemson.primaryColor,
+    textColor: Clemson.secondaryColor,
+    textSize: 18,
+    label: " 2017: \n Clemson",
+    onClick: function() {
+        currentScene = 17;
+    }
+});
+
+var byYear2018Button = new Button({
+    x: 25, 
+    y: 265,
+    color: Alabama.primaryColor,
+    textColor: Alabama.secondaryColor,
+    textSize: 18,
+    label: " 2018: \n Alabama",
+    onClick: function() {
+        currentScene = 18;
+    }
+});
+
+var byYear2019Button = new Button({
+    x: 25, 
+    y: 320,
+    color: Clemson.primaryColor,
+    textColor: Clemson.secondaryColor,
+    textSize: 18,
+    label: " 2019: \n Clemson",
+    onClick: function() {
+        currentScene = 19;
+    }
+});
+
+var byYear2020Button = new Button({
+    x: 225, 
+    y: 100,
+    color: LSU.primaryColor,
+    textColor: LSU.secondaryColor,
+    textSize: 18,
+    label: " 2020: \n LSU",
+    onClick: function() {
+        currentScene = 20;
+    }
+});
+
+var byYear2021Button = new Button({
+    x: 225, 
+    y: 155,
+    color: Alabama.primaryColor,
+    textColor: Alabama.secondaryColor,
+    textSize: 18,
+    label: " 2021: \n Alabama",
+    onClick: function() {
+        currentScene = 21;
+    }
+});
+
+var byYear2022Button= new Button({
+    x: 225, 
+    y: 210,
+    color: Georgia.primaryColor,
+    textColor: Georgia.secondaryColor,
+    textSize: 18,
+    label: " 2022: \n Georgia",
+    onClick: function() {
+        currentScene = 22;
+    }
+});
+
+var byYear2023Button = new Button({
+    x: 225, 
+    y: 265,
+     color: Georgia.primaryColor,
+    textColor: Georgia.secondaryColor,
+    textSize: 18,
+    label: " 2023: \n Georgia",
+    onClick: function() {
+        currentScene = 23;
+    }
+});
+
+var byYear2024Button = new Button({
+    x: 225, 
+    y: 320,
+    color: Michigan.primaryColor,
+    textColor: Michigan.secondaryColor,
+    textSize: 18,
+    label: " 2024: \n Michigan",
+    onClick: function() {
+        currentScene = 24;
+    }
+});
+
+// to here
+
+
+
+
+
+// button instances for the brackets by year. Each has the same x and y values, however, they are different for each year. Each button will take the user from the individual year to a page describing the champion each year.
+
+//from here
+
+var champ2015Button = new Button({
+    x: 125,
+    y: 340,
+    label: OhioState.name,
+    color: OhioState.primaryColor, 
+    textColor: OhioState.secondaryColor,
+    onClick: function() {
+        currentScene = 15;
+    }
+});
+
+var champ2016Button = new Button({
+    x: 125,
+    y: 340,
+    label: Alabama.name,
+    color: Alabama.primaryColor, 
+    textColor: Alabama.secondaryColor,
+    onClick: function() {
+        currentScene = 16;
+    }
+});
+
+var champ2017Button = new Button({
+    x: 125,
+    y: 340,
+    label: Clemson.name,
+    color: Clemson.primaryColor, 
+    textColor: Clemson.secondaryColor,
+    onClick: function() {
+        currentScene = 17;
+    }
+});
+
+var champ2018Button = new Button({
+    x: 125,
+    y: 340,
+    label: Alabama.name,
+    color: Alabama.primaryColor, 
+    textColor: Alabama.secondaryColor,
+    onClick: function() {
+        currentScene = 18;
+    }
+});
+
+var champ2019Button = new Button({
+    x: 125,
+    y: 340,
+    label: Clemson.name,
+    color: Clemson.primaryColor, 
+    textColor: Clemson.secondaryColor,
+    onClick: function() {
+        currentScene = 19;
+    }
+});
+
+var champ2020Button = new Button({
+    x: 125,
+    y: 340,
+    label: LSU.name,
+    color: LSU.primaryColor, 
+    textColor: LSU.secondaryColor,
+    onClick: function() {
+        currentScene = 20;
+    }
+});
+
+var champ2021Button = new Button({
+    x: 125,
+    y: 340,
+    label: Alabama.name,
+    color: Alabama.primaryColor, 
+    textColor: Alabama.secondaryColor,
+    onClick: function() {
+        currentScene = 21;
+    }
+});
+
+var champ2022Button = new Button({
+    x: 125,
+    y: 340,
+    label: Georgia.name,
+    color: Georgia.primaryColor, 
+    textColor: Georgia.secondaryColor,
+    onClick: function() {
+        currentScene = 22;
+    }
+});
+
+var champ2023Button = new Button({
+    x: 125,
+    y: 340,
+    label: Georgia.name,
+    color: Georgia.primaryColor, 
+    textColor: Georgia.secondaryColor,
+    onClick: function() {
+        currentScene = 23;
+    }
+});
+
+var champ2024Button = new Button({
+    x: 125,
+    y: 340,
+    label: Michigan.name,
+    color: Michigan.primaryColor, 
+    textColor: Michigan.secondaryColor,
+    onClick: function() {
+        currentScene = 24;
+    }
+});
+// to here
+
+
+
+// button instances for the "brackets by year" page. Has each year. When clicked, user is taken to that year's bracket with a description of the games and the national champion
+
+
+//from here
+var bracket2015Button = new Button({
+    x: 25, 
+    y: 100,
+    textSize: 18,
+    label: "2015",
+    onClick: function() {
+        currentScene = 2;
+    }
+});
+
+var bracket2016Button = new Button({
+    x: 25, 
+    y: 155,
+    textSize: 18,
+    label: "2016",
+    onClick: function() {
+        currentScene = 3;
+    }
+});
+
+var bracket2017Button = new Button({
+    x: 25, 
+    y: 210,
+    textSize: 18,
+    label: "2017",
+    onClick: function() {
+        currentScene = 4;
+    }
+});
+
+var bracket2018Button = new Button({
+    x: 25, 
+    y: 265,
+    textSize: 18,
+    label: "2018",
+    onClick: function() {
+        currentScene = 5;
+    }
+});
+
+var bracket2019Button = new Button({
+    x: 25, 
+    y: 320,
+    textSize: 18,
+    label: "2019",
+    onClick: function() {
+        currentScene = 6;
+    }
+});
+
+var bracket2020Button = new Button({
+    x: 225, 
+    y: 100,
+    textSize: 18,
+    label: "2020",
+    onClick: function() {
+        currentScene = 7;
+    }
+});
+
+var bracket2021Button = new Button({
+    x: 225, 
+    y: 155,
+    textSize: 18,
+    label: "2021",
+    onClick: function() {
+        currentScene = 8;
+    }
+});
+
+var bracket2022Button = new Button({
+    x: 225, 
+    y: 210,
+    textSize: 18,
+    label: "2022",
+    onClick: function() {
+        currentScene = 9;
+    }
+});
+
+var bracket2023Button = new Button({
+    x: 225, 
+    y: 265,
+    textSize: 18,
+    label: "2023",
+    onClick: function() {
+        currentScene = 10;
+    }
+});
+
+var bracket2024Button = new Button({
+    x: 225, 
+    y: 320,
+    textSize: 18,
+    label: "2024",
+    onClick: function() {
+        currentScene = 11;
+    }
+});
+// to here 
+
+
+
+// instances of buttons for the "top 10 games of the era" section. Each button has the name of the game and the 2 teams. Takes the user to a page describing the game upon being clicked. 
+
+//from here
+var topGames1Button = new Button({
+    x: 25, 
+    y: 100,
+    textSize: 10,
+    label: "Rose Bowl:\nOklahoma vs Georgia",
+    onClick: function() {
+        currentScene = 27;
+    }
+});
+
+var topGames2Button = new Button({
+    x: 25, 
+    y: 155,
+    textSize: 10,
+    label: "Sugar Bowl:\nOhio State vs Alabama",
+    onClick: function() {
+        currentScene = 28;
+    }
+});
+
+var topGames3Button = new Button({
+    x: 25, 
+    y: 210,
+    textSize: 10,
+    label: "Fiesta Bowl:\nOhio State vs Clemson",
+    onClick: function() {
+        currentScene = 29;
+    }
+});
+
+var topGames4Button = new Button({
+    x: 25, 
+    y: 265,
+    textSize: 10,
+    label: "2018 National Championship:\nAlabama vs Georgia",
+    onClick: function() {
+        currentScene = 30;
+    }
+});
+
+var topGames5Button = new Button({
+    x: 25, 
+    y: 320,
+    textSize: 10,
+    label: "2016 National Championship:\nAlabama vs Clemson",
+    onClick: function() {
+        currentScene = 31;
+    }
+});
+
+var topGames6Button = new Button({
+    x: 225, 
+    y: 100,
+    textSize: 10,
+    label: "Rose Bowl:\nAlabama vs Michigan",
+    onClick: function() {
+        currentScene = 32;
+    }
+});
+
+var topGames7Button = new Button({
+    x: 225, 
+    y: 155,
+    textSize: 10,
+    label: "Sugar Bowl:\nTexas vs Washington",
+    onClick: function() {
+        currentScene = 33;
+    }
+});
+
+var topGames8Button = new Button({
+    x: 225, 
+    y: 210,
+    textSize: 10,
+    label: "Fiesta Bowl:\nTCU vs Michigan",
+    onClick: function() {
+        currentScene = 34;
+    }
+});
+
+var topGames9Button = new Button({
+    x: 225, 
+    y: 265,
+    textSize: 10,
+    label: "Peach Bowl:\nOhio State vs Georgia",
+    onClick: function() {
+        currentScene = 35;
+    }
+});
+
+var topGames10Button = new Button({
+    x: 225, 
+    y: 320,
+    textSize: 10,
+    label: "2017 National Championship:\nClemson vs Alabama",
+    onClick: function() {
+        currentScene = 36;
+    }
+});
+//to here
+
+
+
+//button instances within the "controversies" tab. Allows user to see a page for each controversy and describing what year it occured in and what happened. 
+
+//from here
+var controversies2014Button = new Button({
+    x: 40,
+    y: 138,
+    textSize: 18,
+    label: "2014",
+    onClick: function() {
+        currentScene = 37;
+    }
+});
+
+var controversies2016Button = new Button({
+    x: 220, 
+    y: 138,
+    textSize: 18,
+    label: "2016",
+    onClick: function() {
+        currentScene = 38;
+    }
+});
+
+var controversies2017Button = new Button({
+    x: 40,
+    y: 225,
+    textSize: 18,
+    label: "2017",
+    onClick: function() {
+        currentScene = 39;
+    }
+});
+
+var controversies2020Button = new Button({
+    x: 220,
+    y: 225,
+    textSize: 18,
+    label: "2020",
+    onClick: function() {
+        currentScene = 40;
+    }
+});
+
+var controversies2023Button = new Button({
+    x: 130,
+    y: 300,
+    textSize: 18,
+    label: "2023",
+    onClick: function() {
+        currentScene = 41;
+    }
+});
+// to here
+
+
+// PlayoffBracket function to create a playoff bracket object. Every playoff has a year, 4 teams, 2 winners of the semifinal, a national champion, 2 bowl locations, scores, and a national championship location. This constructor function accepts all of that information.
+var PlayoffBracket = function(year, team1, team2, team3, team4, winner1, winner2, champion, bowl1, bowl2, scores, nccLocation) {
+    this.year = year;
+    this.team1 = team1;
+    this.team2 = team2;
+    this.team3 = team3;
+    this.team4 = team4;
+    this.winner1 = winner1;
+    this.winner2 = winner2;
+    this.champion = champion;
+    this.bowl1 = bowl1;
+    this.bowl2 = bowl2;
+    this.scores = scores;
+    this.nccLocation = nccLocation;
+};
+
+// TeamDisplay object with fillTeamColor method. Accepts an x, y, width, height, team, rank, score, and a conditional on whether to display rank and score or not. Fills with a team's primary color, secondary color is the text color. Conditional statement, if it is supposed to display the teams rank, (first round) then it will, if it's not, it will not. 
+var teamDisplay = function(x, y, width, height, team, rank, score, displayRank, displayScore) {
+        fill(team.primaryColor); // box color
+        rect(x, y, width, height);
+        fill(team.secondaryColor); // Text color
+        textAlign(CENTER, CENTER);
+        textSize(15);
+        
+        if (displayRank && displayScore) {
+            text(team.name + " " + rank, x - 30, y - 5, width, height);
+        } else if (!displayRank) {
+            text(team.name, x - 25 , y - 5, width, height);
+        }
+        
+        fill(255, 255, 255);
+        if (displayScore) {
+            rect(x + 126, y - 0.5, width - 127, height);
+            fill(0, 0, 0);
+            text(score, x + 128, y -70, height, width);
+        }
+};
+
+// Display playoff bracket method. Displays accepted year, each bowl game, national championship location, and runs the team dipslay function for each round. It runs through the scores array and displays each, displays the teams, their rank and score in the first round, then just their name and score in the second, without their rank.
+PlayoffBracket.prototype.display = function() {
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(35);
+    text(this.year, 200, 18);
+    textSize(10);
+    text("Semifinals:", 203, 40);
+    text(this.bowl1, 85, 115);
+    text(this.bowl2, 319, 115);
+    text("National Championship:", 200, 208);
+    text(this.nccLocation, 200, 287);
+    text("National Champion:", 197, 320);
+    
+    var cellWidth = 175;
+    var cellHeight = 45;
+
+    // First Round
+    teamDisplay(0, 55, cellWidth, cellHeight, this.team1, 1, this.scores[0], true, true);
+    teamDisplay(225, 55, cellWidth, cellHeight, this.team2, 2, this.scores[1], true, true);
+    teamDisplay(0, 130, cellWidth, cellHeight, this.team4, 4, this.scores[3], true, true);
+    teamDisplay(224, 130, cellWidth, cellHeight, this.team3, 3, this.scores[2], true, true);
+
+
+    // second round
+   
+    teamDisplay(25, 225, cellWidth, cellHeight, this.winner1, 1, this.scores[4], false, true);
+    teamDisplay(201, 225, cellWidth, cellHeight, this.winner2, 1, this.scores[5], false, true);
+};
+
+// game constructor function for the best games. Each game has 2 teams, a location, and colors for each team, and a date. 
+var Game = function(team1, team2, gameLocation, team1Color1, team1Color2, team2Color1, team2Color2, date){
+    this.team1 = team1 || "Blank";
+    this.team2 = team2 || "Blank";
+    this.gameLocation = gameLocation || "Blank";
+    this.team1Color1 = team1Color1 || color(255, 255, 255);
+    this.team1Color2 = team1Color2 || color(255, 255, 255);
+    this.team2Color1 = team2Color1 || color(255, 255, 255);
+    this.team2Color2 = team2Color2 || color(255, 255, 255);
+    this.date = date || "Blank";
+};
+
+//method for the game information to display. Makes a box score, accepting the 2 teams, and running through the scores array to display each. Makes Q1-OT and a final display, and displays the date and location of each game.
+Game.prototype.display = function(){
+    background(0, 0, 0);
+    stroke(255, 255, 255);
+    fill(255, 255, 255);
+        for (var i = 0; i < 7; i++){
+            line((i * 52.5) + 85, 48, (i*52.5) + 85, 150);}
+        for (var i = 1; i < 4; i++){
+            line(0, (i*35) + 45, 400, (i*35) + 45);}
+        for (var i = 1; i <= 4; i++){
+        text("Q" + i, (i * 53) + 52, 67);}
+    text("OT", 315, 67);  
+    text("FINAL", 363, 67);
+    fill(this.team1Color1);
+    rect(0, 81, 84, 33);
+    fill(this.team1Color2);
+    text(this.team1, 10, 100.5);
+    fill(this.team2Color1);
+    rect(0, 116, 84, 33);
+    fill(this.team2Color2);
+    text(this.team2, 10, 136);
+    fill(255, 255, 255);
+    for (i = 0; i < 6; i++){
+        text(scores[i], 103 + (i * 54), 101);
+    }
+    for (i = 6; i < 13; i++){
+        text(scores[i], -221 + (i * 54), 133);
+    }
+    text(this.gameLocation, 185, 34);
+    text(this.date, 225, 16);
+};
+
+
+
+
+// creates the splash screen with the college football playoff logo and hash marks with yard lines. Makes a football field. Also has my bitmoji. 
+var splashScreen = function(){
+    var currentScene = 0;
+    background(0, 163, 19);
+    for (var i = 0; i < 12; i++){
+    fill(255, 255, 255);
+    stroke(255, 255, 255);
+    var lineX = (i * 39 +-50);
+    line(lineX,0,lineX,4000);
+    for (var j = 0; j < 2; j++){ 
+    textSize(15);
+    text(i * 5, lineX + 31, j * 300 + 60);}
+}
+
+    // The draw CFP logo function is defined within the splash screen function. It creates the cfp logo and displays it within the splash screen function. 
+    var drawCFPLogo = function(x, y, width, height){
+    for (var i = 0; i < 4; i++){
+    rect(x, ((i * 34) / 2) + y, width, height);}
+    fill(204, 204, 38);
+    noStroke();
+    arc(x - 5, y + 28, width + 54, height + 123, 90, 270);
+    fill(255, 255, 255);
+    arc(x - 10, y + 27, width + 29, height + 113, 90, 270);
+    fill(204, 204, 38);
+    arc(x + 30 , y + 28, width + 54, height + 123, 270, 450);
+    fill(255, 255, 255);
+    arc(x + 34, y + 27, width + 29, height + 113, 270, 450);
+};
+
+    drawCFPLogo(192, 175, 25, 5);
+    fill(0, 163, 19);
+    rect(40, 67, 322, 71);
+    textSize(20);
+    fill(0, 0, 0);
+    textAlign(CENTER, CENTER);
+    text("THE HISTORY OF THE 4- TEAM\n COLLEGE FOOTBALL PLAYOFF", 200, 94);
+    textSize(10);
+    text("By Ben Signore", 205, 126);
+    startButton.draw();
+    drawBitmoji(325, 299, 36, color(0, 31, 153));
+};
+
+// Home screen function that serves as the home base for the user to navigate the program.
+var homeScreen = function(){
+    var currentScene = 1;
+    background(0, 0, 0);
+    textSize(60);
+    fill(255, 255, 255);
+    text("HOME", 200, 40);
+    textSize(10);
+    textAlign(CENTER, CENTER);
+    text("Welcome to the homepage! \n This is where you can find all information regarding \n the 4-team college football playoff", 195, 93);
+    listButton.draw();
+    bracketsButton.draw();
+    topGamesButton.draw();
+    controversiesButton.draw();
+    definitionButton.draw();
+    drawBitmoji(325, 25, 36, color(0, 31, 153));
+};
+
+
+// functions for each year of the playoff bracket. Makes a new scene for each, each has a list of scores, calls the PlayoffBracket function with its own information. Displays it and then calls the home button, the champion button that takes the user to a page that displays information on the national champion, and the back button. Also draws the bitmoji. 
+
+// From here
+var yearOne = function(){
+    currentScene = 2;
+    scores = [35, 59, 20, 42, 42, 20];   
+    var year2015 = new PlayoffBracket(2015, Alabama, Oregon, FloridaState, OhioState,     OhioState, Oregon, OhioState, bowls[2], bowls[3], scores, hostSites[0]);
+    year2015.display();
+    homeButton.draw();
+    champ2015Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(OhioState.primaryColor));
+    
+};
+    
+var yearTwo = function(){
+    currentScene = 3;
+    scores = [37, 38, 0, 17, 40, 45];   
+    var year2016 = new PlayoffBracket(2016, Clemson, Alabama, MichiganState, Oklahoma,     Clemson, Alabama, Alabama, bowls[0], bowls[1], scores, hostSites[1]);
+    year2016.display();
+    homeButton.draw();
+    champ2016Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Alabama.primaryColor));
+    
+};
+
+var yearThree = function(){
+    currentScene = 4;
+    scores = [24, 31, 0, 7, 31, 35];   
+    var year2017 = new PlayoffBracket(2017, Alabama, Clemson, OhioState, Washington,      Alabama, Clemson, Clemson, bowls[5], bowls[4], scores, hostSites[2]);
+    year2017.display();
+    homeButton.draw();
+    champ2017Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Clemson.primaryColor));
+    
+};
+    
+var yearFour = function(){
+    currentScene = 5;
+    scores = [6, 48, 54, 24, 26, 23];   
+    var year2018 = new PlayoffBracket(2018, Clemson, Georgia, Oklahoma, Alabama,          Alabama, Georgia, Alabama, bowls[2], bowls[3], scores, hostSites[3]);
+    year2018.display();
+    homeButton.draw();
+    champ2018Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Alabama.primaryColor));
+};
+
+var yearFive = function(){
+    currentScene = 6;
+    scores = [45, 30, 3, 34, 16, 44];   
+    var year2019 = new PlayoffBracket(2019, Alabama, Clemson, NotreDame, Oklahoma,        Alabama, Clemson, Clemson, bowls[0], bowls[1], scores, hostSites[4]);
+    year2019.display();
+    homeButton.draw();
+    champ2019Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Clemson.primaryColor));
+};
+    
+var yearSix = function(){
+    currentScene = 7;
+    scores = [63, 23, 29, 28, 42, 25];   
+    var year2020 = new PlayoffBracket(2020, LSU, OhioState, Clemson, Oklahoma, LSU,       Clemson, LSU, bowls[5], bowls[4], scores, hostSites[5]);
+    year2020.display();
+    homeButton.draw();
+    champ2020Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(LSU.primaryColor));
+};
+
+var yearSeven = function(){
+    currentScene = 8;
+    scores = [31, 28, 49, 14, 52, 24];   
+    var year2021 = new PlayoffBracket(2021, Alabama, Clemson, OhioState, NotreDame,       Alabama, OhioState, Alabama, bowls[3], bowls[2], scores, hostSites[6]);
+    year2021.display();
+    homeButton.draw();
+    champ2021Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Alabama.primaryColor));
+};
+    
+var yearEight = function(){    
+    currentScene = 9;
+    scores = [27, 11, 34, 6, 18, 33];   
+    var year2022 = new PlayoffBracket(2022, Alabama, Michigan, Georgia, Cincinnati,       Alabama, Georgia, Georgia, bowls[1], bowls[0], scores, hostSites[7]);
+    year2022.display();
+    homeButton.draw();
+    champ2022Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Georgia.primaryColor));
+};
+
+var yearNine = function(){    
+    currentScene = 10;
+    scores = [42, 45, 51, 41, 65, 7];   
+    var year2023 = new PlayoffBracket(2023, Georgia, Michigan, TCU , OhioState,           Georgia, TCU, Georgia, bowls[5], bowls[4], scores, hostSites[8]);
+    year2023.display();
+    homeButton.draw();
+    champ2023Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Georgia.primaryColor));
+    };
+
+var yearTen = function(){
+    currentScene = 11;
+    scores = [27, 37, 31, 20, 34, 13];
+    var year2024 = new PlayoffBracket(2024, Michigan, Washington, Texas, Alabama,         Michigan, Washington, Michigan, bowls[3], bowls[2], scores, hostSites[9]);
+    year2024.display();
+    homeButton.draw();
+    champ2024Button.draw();
+    backButton.draw();
+    drawBitmoji(325, 350, 36, color(Michigan.primaryColor));
+    };
+// to here
+
+// function that makes the page to display all of the buttons that takes the user to each individual national champion page. Displays national champions by year. 
+var listOfChamps = function(){
+    currentScene = 12;
+    fill(255, 255, 255);
+    background(0, 0, 0);
+    textSize(14);
+    text("National Champions By Year:", 200, 73);
+    homeButton.draw();
+    byYear2015Button.draw();
+    byYear2016Button.draw();
+    byYear2017Button.draw();
+    byYear2018Button.draw();
+    byYear2019Button.draw();
+    byYear2020Button.draw();
+    byYear2021Button.draw();
+    byYear2022Button.draw();
+    byYear2023Button.draw();
+    byYear2024Button.draw();
+    drawBitmoji(325, 50, 36, color(180, 151, 90));
+};  
+
+// function that displays the brackets each year. Each button calls the yearXXXX functions above
+var bracketList = function(){
+    currentScene = 13;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    text("Brackets By Year", 200, 78);
+    homeButton.draw();
+    bracket2015Button.draw();
+    bracket2016Button.draw();
+    bracket2017Button.draw();
+    bracket2018Button.draw();
+    bracket2019Button.draw();
+    bracket2020Button.draw();
+    bracket2021Button.draw();
+    bracket2022Button.draw();
+    bracket2023Button.draw();
+    bracket2024Button.draw();
+    drawBitmoji(325, 50, 36, color(180, 151, 90));
+};
+
+
+// Individual champions page. Fills the page with each team's color, draws the home button, displays the name, schedule, and a description of each team's season for every year. Uses the schedule array to run through and display. 
+
+// from here
+var osu2015 = function(){
+    currentScene = 15;
+    background(OhioState.primaryColor);
+    homeButton.draw();
+    fill(OhioState.secondaryColor);
+    textSize(27.5);
+    text("2014/15 " + OhioState.name + " " + OhioState.nickname, 20, 75);
+    var schedule = ["(#5) vs Navy: W 34-17", "(#8) vs Virginia Tech: L 21-35", "(#22) vs Kent State: W 66-0", "(#22) vs Cincinnati: W 50-28", "(#20) @ Maryland: W 52-24", "(#13) vs Rutgers: W 56-17", "(#13) @ Penn State: W 31-24 (2OT)", "(#16) vs Illinois: W 55-14", "(#14) @ #8 Michigan State: W 49-37", "(#8) @ #25 Minnesota: W 31-24", "(#6) vs Indiana: W 42-27", "(#6) vs Michgan: W 42-28", "Big Ten Championship:", "(#5) vs #13 Wisconsin: W 59-0", "Sugar Bowl:","(#4) vs #1 Alabama: W 42-25","National Championship:", "(#4) vs #2 Oregon: W 42-20"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));
+    }
+    var message = "Led by Head Coach Urban Meyer, the\nBuckeyes faced adversity from the start,\nlosing both Braxton Miller and J.T. Barrett\nto injury, leaving 3rd stringer Cardale Jones\nto start at QB in the posteason. Despite an\nearly season loss to Virginia Tech, Ohio State\nwent undefeated for the rest of the regular\nseason, including a road upset of #8 Michigan\nState. Ohio State dominated Wisconsin in\nthe Big Ten Championship, including 3 TDs\nfrom Devin Smith on 4 receptions, and 220\nyards and 2 TDs from Ezekiel Elliott. The\nBuckeyes shocked the Crimson Tide off a trick\npass to Michael Thomas with 12 seconds left in\nthe first half and a 41-yard pick-six to take a\n2-score lead. Elliott went for 230 yards and 2\nTDs, including an 85-yard touchdown with 3:24\nleft to put the game away. Elliot went for 246\nyards and 4 TD in the Natty against Oregon in\na 42-20 win. Nick Bosa won the Nagurski\naward, and 31 Buckeyes were drafted from\nthe team, including 9 first-round picks.";
+    text(message, 189, 97);
+    drawBitmoji(325, 20, 36, color(OhioState.secondaryColor));
+};
+
+var alabama2016 = function(){
+    currentScene = 16;
+    background(Alabama.primaryColor);
+    homeButton.draw();
+        fill(Alabama.secondaryColor);
+    textSize(27.5);
+    text("2015/16 " + Alabama.name + " " + Alabama.nickname, 7, 75);
+    var schedule = ["(#3) vs #20 Wisconsin: W 35-17", "(#2) vs Middle Tennessee: 37-10", "(#2) vs #15 Ole Miss: L 37-43", "(#12) vs Louisiana-Monroe: W 34-0", "(#13) @ #8 Georgia: W 38-10", "(#8) vs Arkansas: W 27-14", "(#10) @ #9 Texas A&M: 41-23", "(#8) vs Tennessee: W 19-14", "(#4) vs #2 LSU: W 30-16", "(#2) @ #17 Mississippi State: W 31-6", "(#2) vs Charleston Southern: W 56-6", "(#2) @ Auburn: W 29-13", "SEC Championship:", "(#2) vs #18 Florida: W 29-15", "Cotton Bowl:","(#2) vs #3 Michigan State: W 38-0","National Championship:", "(#2) vs #1 Clemson: W 45-40"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));
+    }
+    var message = "Riding a historic season from Heisman-Trophy\nwinner Derrick Henry, the Tide captured their\n4th National Title in 7 years. After losing to Ole\nMiss, the Tide rolled through their remaining\nschedule, including wins at #8 Georgia and a\ndominating home win against #2 LSU, where\n5-star LSU running back Leonard Fournette,\nwho had averaged 193.1 yards per game, was\nheld to just 31 rushing yards, whereas Henry\nran for 210 yards and 3 TD. After dominating\nMichigan State in the Cotton Bowl, the Tide \nsquared off against #1 Clemson in the National\nTitle. After an onside kick and a 51-yard TD to\nOJ Howard, the tide took a 31-24 lead with 9:45\n remaining. After allowing a field goal, Kenyan\nDrake ran the ensuing kickoff 95 yards for a TD.\nAfter another Derrick Henry TD run, the Tide\nclaimed victory, with Henry finishing with 158\nyards and 3 TD, and Howard finishing with 208\nyards and 2 TD. Henry broke the SEC rushing\nyards and TD record, finishing with 2219 rushing\nyards and 28 TD on the season.";
+    text(message, 186, 97);
+    drawBitmoji(325, 20, 36, color(Alabama.secondaryColor));
+};
+
+var clemson2017 = function(){
+    currentScene = 17;
+    background(Clemson.primaryColor);
+    homeButton.draw();
+    fill(Clemson.secondaryColor);
+    textSize(27.5);
+    text("2016/17 " + Clemson.name + " " + Clemson.nickname, 20, 75);
+    var schedule = ["(#2) @ Auburn: W 19-13", "(#2) vs Troy: W 30-24", "(#5) vs South Carolina State: 59-0", "(#5) @ Georgia Tech: W 26-7", "(#5) vs #3 Louisville: 42-36", "(#3) @ Boston College: W 56-10", "(#13) vs NC State: W 24-17 (OT)", "(#3) @ #12 Florida State: W 37-34", "(#2) vs Syracuse: W 54-0", "(#2) vs Pittsburgh: L 42-43", "(#4) @ Wake Forest: W 35-13", "(#4) vs South Carolina: W 56-7", "ACC Championship:", "(#3) vs #23 Virginia Tech: W 42-35", "Fiesta Bowl:","(#2) vs #3 Ohio State: W 31-0","National Championship:", "(#2) vs #1 Alabama: W 35-31"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));}
+        var message = "After finishing runners-up, Clemson came out\nswinging, including a 42-36 win against Heisman\nTrophy winner Lamar Jackson and #3 Lousiville.\nAfter losing to Pitt at home by 1 point, the Tigers\nwent to win their next 4 games by an average of\n27.25 points, including a 31-0 shutout win in the\nFiesta Bowl against a #3 Ohio State who had\naveraged 39.4 points per game. In the first-ever\nNational Title rematch, Clemson faced Alabama.\nAfter falling into a 14-0 defecit and losing 3\nfumbles, Deshaun Watson and Hunter Renfrow\nwere able to bring the score to 24-14 as the 4th\nquarter began. Clemson, scored 2 touchdowns\nto take a 28-24 lead, before surrendering a 30\nyard rushing TD to Alabama's Jalen Hurts with\n2:07 to go. After a 9-play, 68 yard drive, Watson\nfound Renfrow once again with 1 second on the\nclock to win their first National Title since 1981.\nWatson finished his final game with 420 yards \nand 3 TD passes, ultimately finishing his season\nwith 5,222 total yards and 50 TD, winning the\nO'Brien Award.";
+    text(message, 184, 97);
+    drawBitmoji(325, 20, 36, color(Clemson.secondaryColor));
+};
+
+var alabama2018 = function(){
+    currentScene = 18;
+    background(Alabama.primaryColor);
+    homeButton.draw();
+    fill(Alabama.secondaryColor);
+    textSize(27.5);
+    text("2017/18 " + Alabama.name + " " + Alabama.nickname, 7, 75);
+    var schedule = ["(#1) vs #3 Florida State: W 24-7", "(#1) vs Fresno State: 41-10", "(#1) vs Colorado State: W 41-23", "(#1) @ Vanderbilt: W 59-0", "(#1) vs Ole Miss: W 66-3", "(#1) @ Texas A&M: W 27-19", "(#1) vs Arkansas: 41-9", "(#1) vs Tennessee: W 45-7", "(#2) vs #19 LSU: W 24-10", "(#2) @ #16 Mississippi State: W 31-24", "(#1) vs Mercer: W 56-0", "(#1) @ #6 Auburn: L 14-26", "SEC Championship:", "Did Not Qualify", "Sugar Bowl:","(#4) vs #1 Clemson: W 24-6","National Championship:", "(#4) vs #3 Georgia: W 26-23 (OT)"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));
+    }
+    var message = "Alabama started the season out 11-0, including\na win at #16 Mississippi State, where QB Jalen\nHurts found true freshman DeVonta Smith for a\ngame-winning touchdown. After losing the Iron\nBowl to #6 Auburn, Alabama did not qualify for\nthe SEC Championship game, meaning they did\nnot control their own destiny. Alabama would\nsneak into the playoff over Wisconsin and Ohio\nState and take revenge against #1 Clemson. In\nan all-SEC National Title Game, Georgia would\nhave the advantage, as the game would be held\nin Atlanta. After a dud of a first half, where Jalen\nHurts was held to 21 passing yards, Alabama\nwould play true freshman Tua Tagovailoa, who\nguided Alabama back from down 7-20 with 5:16\nleft to a 20-20 tie. Despite missing the 30-yard\nFG as time expired, the Tide would hold Georgia\nto a field goal in OT. After taking a sack, on 2nd\n& 26, Tua found DeVonta Smith, true freshman\nto true freshman, to win the National Title in\nwalkoff fashion.";
+    text(message, 185, 97);
+    drawBitmoji(325, 20, 36, color(Alabama.secondaryColor));
+};
+
+var clemson2019 = function(){
+    currentScene = 19;
+    background(Clemson.primaryColor);
+    homeButton.draw();
+    fill(Clemson.secondaryColor);
+    textSize(27.5);
+    text("2018/19 " + Clemson.name + " " + Clemson.nickname, 55, 75);
+    var schedule = ["(#2) vs Furman: W 48-7", "(#2) @ Texas A&M: W 28-26", "(#2) vs Georgia Southern: 38-7", "(#3) @ Georgia Tech: W 49-21", "(#3) vs Syracuse: W 27-23", "(#4) @ Wake Forest: W 63-3", "(#3) vs #16 NC State: W 41-7", "(#2) @ Florida State: W 59-10", "(#2) vs Louisville: W 77-16", "(#2) @ Boston College: W 27-7", "(#2) vs Duke: W 35-6", "(#2) vs South Carolina: W 56-35", "ACC Championship:", "(#2) vs Pittsburgh: W 42-10", "Cotton Bowl:","(#2) vs #3 Notre Dame: W 30-3","National Championship:", "(#2) vs #1 Alabama: W 44-16"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));}
+    textSize(9.6);
+    var message = "The first 15-0 National Champion, the Tigers, led by\ntrue freshman Trevor Lawrence ranked #4 in points\nper game (44.3) and #1 in points allowed per game\n(13.1). Running back Travis Etienne Jr. finished with\n1736 scrimmage yards and 26 total TDs. After\nsurviving a scare at Texas A&M, the Tigers smacked\nNotre Dame 30-3 to face Alabama in the Title game,\ntheir 4th postseason meeting in a row. In a shocking\noutcome, the Tigers dominated the Tide, intercepting\nTua Tagovailoa twice, including one returned for a\ntouchdown. Lawrence finished the game with 347\npassing yards and 3 TDs, including 153 yards and a\nTD to Justyn Ross. Etienne also finished the game\nwith 2 TD. The Tigers had 20 players recieving All-\nACC honors, with Travis Etienne winning ACC\nPlayer of the Year. 10 national awards were won\namong, Etienne, Lawrence, Clelin Ferrell, Mitch\nHyatt, Hunter Renfrow, and Christian Wilkins. A total\nof 18 players from this roster went on to be drafted,\nincluding 5 first round picks. Lawrence, the #1\nprospect in the class of 2018, usurped returning\nstarter Kelly Bryant for the QB spot and finished the\nyear with 3280 passing yards and 30 TDs, extending\nan undefeated streak to 56 games dating back to HS.";
+    text(message, 167, 92);
+    drawBitmoji(325, 20, 36, color(Clemson.secondaryColor));
+};
+
+var lsu2020 = function(){
+    currentScene = 20;
+    background(LSU.primaryColor);
+    homeButton.draw();
+    fill(LSU.secondaryColor);
+    textSize(27.5);
+    text("2019/20 " + LSU.name + " " + LSU.nickname, 90, 75);
+    var schedule = ["(#6) vs Georgia Southern: W 55-3", "(#6) @ #9 Texas: W 45-38", "(#4) vs Northwestern State: 65-14", "(#4) @ Vanderbilt: W 66-38", "(#5) vs Utah State: W 42-6", "(#5) vs #7 Florida: W 42-28", "(#2) @ Mississippi State: W 36-13", "(#2) vs #9 Auburn: W 23-20", "(#2) @ #3 Alabama: W 46-41", "(#1) @ Ole Miss: W 58-37", "(#1) vs Arkansas: W 56-20", "(#2) vs Texas A&M: W 50-7", "SEC Championship:", "(#2) vs #4 Georgia: W 37-10", "Peach Bowl:","(#1) vs #4 Oklahoma: W 63-28","National Championship:", "(#1) vs #3 Clemson: W 42-25"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));}
+        var message = "Widely considered to be the greatest team ever,\nthe Tigers deafeated 7 top-10 teams throughout\nthe year. Heisman winner Joe Burrow threw for an\nFBS record 60 TD and 5671 yards. Star players\nincluded but were not limited to Ja'Marr Chase, \nJustin Jefferson, Patrick Queen, Grant Delpit, Thad\nMoss, K'Lavon Chaisson, Clyde Edwards-Helaire,\nand Terrace Marshall. In shocking fashion, the\nTigers beat Alabama on the road for their first win\nagainst the Tide in 8 meetings, snapping a 31-game home win\nstreak for the Tide. The Tigers demolished\nOklahoma in the Peach Bowl, leading 49-14 at\nhalftime, with Burrow finishing with 493 passing \nyards and 7 TD in 3 Quarters of play. Jefferson\nfinished with 227 yards and 4 TD. They faced\ngenerational prospect Trevor Lawrence, who was\n'the greatest prospect since Peyton Manning'in the\nTitle game.Despite this, there  was never a doubt,\nwinning 42-25, with Burrow going for 463 yards and\n5 TD, with 221 yards and 2 TD going to Ja'Marr\nChase.";
+    text(message, 170, 100);
+    drawBitmoji(325, 20, 36, color(LSU.secondaryColor));
+};
+
+var alabama2021 = function(){
+    currentScene = 21;
+    background(Alabama.primaryColor);
+    homeButton.draw();
+    fill(Alabama.secondaryColor);
+    textSize(27.5);
+    text("2020/21 " + Alabama.name + " " + Alabama.nickname, 7, 75);
+    var schedule = ["(#2) @ Missouri: W 38-19", "(#1) vs #13 Texas A&M: 52-24", "(#2) @ Ole Miss: W 63-48", "(#1) @ Vanderbilt: W 59-0", "(#2) vs #3 Georgia: W 41-24", "(#2) @ Tennessee: W 48-17", "(#2) vs Mississippi State: 41-0", "(#1) vs Kentucky: W 63-3", "(#1) vs #22 Auburn: W 42-13", "(#1) @ LSU: W 55-17", "(#1) @ Arkansas: W 52-3", "SEC Championship:", "(#1) vs #7 Florida: W 52-46", "Rose Bowl:","(#1) vs #4 Notre Dame: W 31-14","National Championship:", "(#1) vs #3 Ohio State: W 52-24"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*18.25));
+    }
+    var message = "In a COVID-shortened 2020 season, the Tide ran it\nback after a disappointing 2019 season, returning\n15 starters. DeVonta Smith shined all season, taking\nhome the Heisman, Maxwell, Walter Camp, \nBiletnikoff, and 3 player of the year awards. Smith,\nalong with Mac Jones, Najee Harris, Pat Surtain II,\nAlex Leatherwood, Landon Dickerson, John Metchie,\nand Thomas Fletcher combined for 19 national\nawards. The Tide had 19 players named to the All-\nSEC team. Smith finished the season with 1862\nrecieving yards and 24 TDs, Harris finished the year\nwith 1891 all-purpose yards and 30 TD, and Jones\nfinsihed with 4500 passing yards and 41 TD. They\nfinshed with 5 wins against top-25 teams. In the\nNational Title, they got revenge for their 2016 loss to\nOhio State, hanging a 52-24 drubbing. Mac Jones\nfinished the day with 464 passing yards and 5 TD,\nwith Devonta Smith capping of his storied Alabama\ncareer with 215 recieving yards and 3 TD. The Tide\nclaimed their 6th title in 12 years, Nick Saban's 7th,\nbreaking Bear Bryant's record of 6, solidifying Saban\nas the greatest coach in college football history.";
+    text(message, 165, 97);
+    drawBitmoji(325, 20, 36, color(Alabama.secondaryColor));
+};
+
+var georgia2022 = function(){
+    currentScene = 22;
+    background(Georgia.primaryColor);
+    homeButton.draw();
+    fill(Georgia.secondaryColor);
+    textSize(27.5);
+    text("2021/22 " + Georgia.name + " " + Georgia.nickname, 60, 75);
+    var schedule = ["(#5) vs #3 Clemson: W 10-3", "(#2) vs UAB: W 56-7", "(#2) vs South Carolina: 40-13", "(#2) @ Vanderbilt: W 62-0", "(#2) vs #8 Arkansas: W 37-0", "(#2) @ #18 Auburn: W 34-10", "(#1) vs #11 Kentucky: W 30-13", "(#1) vs Florida: W 34-7", "(#1) vs Missouri: W 43-6", "(#1) @ Tennessee: W 41-17", "(#1) vs Charleston Southern: W 56-7", "(#1) @ Georgia Tech: W 45-0", "SEC Championship:", "(#1) vs #3 Alabama: L 24-41", "Orange Bowl:","(#3) vs #2 Michigan: W 34-11","National Championship:", "(#3) vs #1 Alabama: W 33-18"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));}
+    var message = "In a historic season for the Bulldogs, Georgia's\ndefense is considered to be one of the greatest \never, holding opponnents to just 10.2 points per\ngame. Defensive Tackle Jordan Davis won the\nBednarik and Outland Awards, with Nakobe Dean\nwinning the Butkus Award. After locking down\nopposing offenses all season, Georgia faced their\nlongtime tormentor, Alabama, for the SEC Title.\nThe Bulldogs were unable to excorsize their\ndemons, allowing 461 yards total and 4 total TD\nto Bryce Young in a Heisman-clinching game.\nIt appeared that Georgia had choked yet again.\nHowever, the Bulldogs did what they do best,\nholding Michigan to just 11 points on 3 turnovers,\nincluding holding the Wolverine's 3-headed\nmonster of a backfield to just 68 rushing yards\ncombined. Georgia would rematch with Alabama\nin the Title game. However, the Bulldogs held the\nTide to 30 yards rushing. Up by 8 with 0:54 left,\nKelee Ringo returned an interception 79 yards to\nseal Georgia's first National Championship win\nin 41 years.";
+    text(message, 178, 97);
+    drawBitmoji(325, 20, 36, color(Georgia.secondaryColor));
+};
+
+var georgia2023 = function(){
+    currentScene = 23;
+    background(Georgia.primaryColor);
+    homeButton.draw();
+    fill(Georgia.secondaryColor);
+    textSize(27.5);
+    text("2022/23 " + Georgia.name + " " + Georgia.nickname, 60, 75);
+    var schedule = ["(#3) vs #11 Oregon: W 49-3", "(#2) vs Samford: W 33-0", "(#1) @ South Carolina: 48-7", "(#1) vs Kent State: W 39-22", "(#1) @ Missouri: W 26-22", "(#2) vs Auburn: W 42-10", "(#1) vs Vanderbilt: W 55-0", "(#1) vs Florida: W 42-20", "(#2) vs #1 Tennessee: W 27-13", "(#1) @ Mississippi State: W 45-19", "(#1) @ Kentucky: W 16-6", "(#1) vs Georgia Tech: W 37-14", "SEC Championship:", "(#1) vs #14 LSU: W 50-30", "Peach Bowl:","(#1) vs #4 Ohio State: W 42-41","National Championship:", "(#1) vs #3 TCU: W 65-7"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));}
+        var message = "Despite losing 15 players to the draft in the previous\nseason, Georgia remained dominant, ranking 5th in\nthe nation in both points per game and points\nallowed per game. Brock Bowers won the Mackey\nAward, and the rolled through the regular season\nonce again after trouncing LSU in the SEC Title, the\nDawgs found themselves down 38-24 at the start of\nthe 4th Quarter. After an 18-point explosion,\nincluding a Stetson Bennett TD pass to Adonai\nMitchell with 0:54 left, the Dawgs took a 42-41 lead.\nHowever the Buckeyes drove 43 yards in 51\nseconds to set up a 50 yard field goal. While fans\ncounted as 2022 turned into 2023 and a New Year's\nEve turned into New Year's Day, Noah Ruggles\nhooked the kick left, sending the Dawgs to the title\nfor the second year in a row. In the Title game,\nGeorgia picked off TCU's Max Duggan twice, with\nBennett going for 304 passing yards and 6 total TD.\nThe 58-point blowout solidified Bennett as Georgia's\nmost accomplished QB ever, and Head Coach\nKirby Smart as the most accomplished coach in the\nhistory of the program.";
+    text(message, 169, 98);
+    drawBitmoji(325, 20, 36, color(Georgia.secondaryColor));
+};
+
+var michigan2024 = function(){
+    currentScene = 24;
+    background(Michigan.primaryColor);
+    homeButton.draw();
+    fill(Michigan.secondaryColor);
+    textSize(27.5);
+    text("2023/24 " + Michigan.name + " " + Michigan.nickname, 25, 75);
+    var schedule = ["(#2) vs East Carolina: W 30-3", "(#2) vs UNLV: W 35-7", "(#2) vs Bowling Green: 31-6", "(#2) vs Rutgers: 31-7", "(#2) @ Nebraska: W 45-7", "(#2) @ Minnesota: W 52-10", "(#2) vs Indiana: W 52-7", "(#2) @ Michigan State: W 49-0", "(#3) vs Purdue: W 41-13", "(#3) @ Penn State: W 24-15", "(#3) @ Maryland: W 31-24", "(#3) vs Ohio State: W 30-24", "Big Ten Championship:", "(#2) vs #16 Iowa: W 26-0", "Rose Bowl:","(#1) vs #4 Alabama: W 27-20 (OT)","National Championship:", "(#1) vs #2 Washington: W 34-13"];
+    textSize(10);
+    textAlign(LEFT, LEFT);
+    fill(255, 255, 255);
+    for (var i = 0; i<schedule.length; i++){
+        text(schedule[i], 12, 96 + (i*17.25));}
+    textSize(9.6);
+    var message = "After losing in back-to-back years in heartbreaking\nfashion in the playoff, the Wolverines entered 2023\nwith an 'Us Against Everybody' mentality. Head\nCoach Jim Harbaugh was suspended for a total of\n6 games for alleged sign-stealing during the 2022\nseason. In response, players tweeted 'bet.' After\nwinning all 6 games of his suspension, including a\n24-15 road win against Penn State, the Wolverines\ndefeated arch rival Ohio State to advance to, and\nwin, their third-straight Big Ten Championship.\nMichigan's defense held opponents to just 10.4\npoints per game, first in the nation. In the Rose\nBowl, the Wolverines held Alabama to just 116\npassing yards. On 4th & Goal from the 2 yard-line,\nMichigan stopped Alabama QB Jalen Milroe from\nscoring, beating the Tide in what would be\nlegendary Alabama coach Nick Saban's final game.\nIn the National Title, they faced Washington, who\nthey had faced 4 times in the Rose Bowl dating\nback to 1978, Michigan ran for 303 yards as a team\nwhile holding Washington to 46 rushing yards,\ndelivering Michigan it's first undefeated season and \nNational title since 1997.";
+    text(message, 174, 96);
+    drawBitmoji(325, 20, 36, color(Michigan.secondaryColor));
+};
+// to here 
+
+
+// Creates a function that displays all of the buttons for the top 10 games of the era. 
+var top10Games = function(){
+    currentScene = 25;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(20);
+    text("Top 10 Games Of The Era", 200, 62.5);
+    textSize(10);
+    text("In no order", 200, 80);
+    homeButton.draw();
+    topGames1Button.draw();
+    topGames2Button.draw();
+    topGames3Button.draw();
+    topGames4Button.draw();
+    topGames5Button.draw();
+    topGames6Button.draw();
+    topGames7Button.draw();
+    topGames8Button.draw();
+    topGames9Button.draw();
+    topGames10Button.draw();
+    drawBitmoji(353, 35, 36, color(180, 151, 90));
+};
+
+
+
+// Creates a function that displays all of the buttons for the biggest controversies of the era
+var topControversies = function(){
+    currentScene = 26;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(20);
+    text("Controversies", 200, 89);
+    homeButton.draw();
+    controversies2014Button.draw();
+    controversies2016Button.draw();
+    controversies2017Button.draw();
+    controversies2020Button.draw();
+    controversies2023Button.draw();
+    drawBitmoji(325, 24, 36, color(180, 151, 90));
+};
+
+// Creates a function that displays a page describing what the 4 team playoff was and how it worked
+var definition = function(){
+    currentScene = 14;
+    background(0, 0, 0);
+    homeButton.draw();
+    textSize(15);
+    fill(255, 255, 255);
+    text("How did the 4-team Playoff Work?", 205, 65);
+    textSize(10.32);
+    var message = "Between 2014 and 2023, the College Football Playoff was held under a 4-team format \nto name a national champion. This format is the first of it's kind, as before 2014, there \nwas no postseason tournament to determine a champion. Under the playoff format, a \ncommittee of members selects and seeds the teams. Members included one athletic \ndirector from each of the Power 5 Conferences. (ACC, Big Ten, Big XII, PAC-12, and \nSEC). The 4 highest-ranked teams were matched up against each other, #1 vs #4 and \n#2 vs #3. The semifinal round was held in a rotation of 6 neutral-site bowl games. The \nrotation was set on a 3-year cycle, with the following pairings of bowls: Fiesta/Peach, \nRose/Sugar, Orange/Cotton. The #1 seed was able to choose between the two bowls \nfor the location of their bowl. In 2023, #1 Georgia was able to choose between the \nPeach Bowl and Fiesta Bowl, choosing the Peach Bowl, as it was held 70 miles away \nin Atlanta. As only 4 teams could make the format, it meant that at least one Power 5 \nchampion would be left out. In 7/10 of the possible years, it was the PAC-12, with its\nchampion finishing with 2 or more losses. However, winning your conference was not an \noutright requirement to being selected. In 2022, Georgia lost the SEC Championship \nto Alabama. Despite this, they ranked as the #3 seed, defeating Alabama in the \nNational Championship rematch. In the 2024-25 season and beyond, a 12-team \nformat, with 5 automatic bids for conference champions and 7 at-large bids will be \nadopted. The top 4 conference champions will recieve byes, with the remaining teams \nplaying on-campus playoff games. The quarterfinal and semifinal rounds will be played \nin 6 previously mentioned bowls.";
+    text(message, 201, 238);
+    drawBitmoji(360, 35, 36, color(180, 151, 90));
+};
+
+// creates pages that are called when the top 10 game buttons are clicked. Each creates a new instance of a game within the function, which takes the scores and displays them on screen. Displays the game and the scores of the game, and a custom message for each game describing the details of the game.
+
+// From here 
+var topGame1 = function(){
+    currentScene = 27;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    
+    textSize(10);
+    scores = [7, 10, 14, 14, 9, 54, 14, 17, 0, 14, 3, 48];
+    var game1 = new Game(Georgia.name, Oklahoma.name, bowls[3], Georgia.primaryColor, Georgia.secondaryColor, Oklahoma.primaryColor, Oklahoma.secondaryColor,"January 1st, 2018");
+    game1.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "Big XII Champion Oklahoma, led by Heisman trophy winner Baker Mayfield, would play\nSEC Champion Georgia for the first time ever in the Rose Bowl.Oklahoma ranked top 3\nin scoring per game, while Georgia's defense ranked top 6 in points allowed per game.\nOklahoma struck first and kept their foot on the gas, taking a 31-14 lead with 0:06 in the\nfirst half. However, after a squib kick that only travelled 12 yards, Georgia cashed in with\na Rose Bowl record 55-yard field goal to make it 31-17 at the half. Georgia's defense\nclamped down in the 3rd, forcing 4 3-and-outs and an interception, as Georgia continued\nto play physical, by running the football, including a 50-yard TD run by Nick Chubb. Tied\nat 38 with 7:00 to go, Georgia back Sony Michel fumbled, and Steven Parker returned it\n46 yards to take a 45-38 lead. Georgia would tie the game up with a 2-yard Nick Chubb\nrun, sending the game to OT tied at 45. After trading field goals, Georgia Linebacker\nLorenzo Carter blocked Austin Seibert's 27-yard field goal in 2OT, setting Georgia up to\nwin the game with any score. After potentially fumbling the game away in the 4th quarter,\nMichel redeemed himself, running 27 yards, sending the Dawgs to the Championship.\nMichel rushed for 181 yards and 3 TD, while Chubb went for 145 yards and 2 TD, with\nruns of 75 and 50 yards respectively. A back-and-forth instant classic.";
+    text(message, 6, 169);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(Georgia.primaryColor));
+};
+
+var topGame2 = function(){
+    currentScene = 28;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [6, 14, 14, 8, 0, 42, 14, 7, 7, 7, 0, 35];
+    var game2 = new Game(OhioState.name, Alabama.name, bowls[2], OhioState.primaryColor, OhioState.secondaryColor, Alabama.primaryColor, Alabama.secondryColor, "January 1st, 2015");
+    game2.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "Entering the game, many questioned if Ohio State deserved to be in the playoff with a\nthird-string QB. This appeared to be true, as Alabama corner Cyrus Jones intercepted\nCardale Jones, and Ohio State back Ezekiel Elliott lost the first fumble of his career,\nputting Alabama up 21-6 midway through the second quarter. Ohio State finally woke up,\nscoring 2 touchdowns before halftime, including a trick-play touchdown pass to Michael\nThomas with 0:12 to go in the first half. Ohio State carried the momentum into the 2nd\nhalf, scoring a 47-yard touchdown on their opening drive. The Buckeyes intercepted\nBlake Sims for a 41-yard pick-6, making the lead 34-21 after 28 unanswered points. \nThe Buckeyes would go on to intercept Sims 2 more times in the 2nd half. The defining\nmoment came with 3:24 left in the 4th. Alabama pinned the Buckeyes at their own 5 yard\nline. After a first down, Ezekiel Elliott would rip off an iconic run, nicknamed '85 yards\nthrough the heart of the South,' to deliver a 42-28 lead. After allowing a touchdown,\nthe Buckeyes would intercept Sims for a 3rd and final time to end Alabama's push for OT.\nElliott finished with 230 rushing yards and 2 TD, including the dagger to put the Tide\naway for good. This game put a halt to the SEC's percieved dominance of the sport,\nproving that a team outside of the South was able to seriously compete for a\nChampionship.";
+    text(message, 6, 167);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(OhioState.primaryColor));
+};
+
+var topGame3 = function(){
+    currentScene = 29;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [0, 14, 7, 8, 0, 29, 10,6, 0, 7, 0, 23];
+    var game3 = new Game(Clemson.name, OhioState.name, bowls[4], Clemson.primaryColor, Clemson.secondaryColor, OhioState.primaryColor, OhioState.secondaryColor, "December 31st, 2019");
+    game3.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "On 12/31/2016, Clemson would dominate Ohio State, 31-0 in the Fiesta Bowl to advance\nto the National Title. 3 years later, on the same day, in the same stadium, the two would\nface off once again. However, Ohio State would gain their footing early, taking a 16-0\nlead, including a 68-yard TD run by JK Dobbins. Clemson would respond before the half\nwith 2 scores, including a 67-yard run by Trevor Lawrence to draw within 2. Lawrence\nwould find Travis Etienne on a screen pass, which he would take 53 yards straight to the\nhouse. With 4:54 left, on 3rd & 19, Lawrence found Justyn Ross, who proceeded to have\nthe ball ripped out by Buckeyes corner Jeff Okudah, and Jordan Fuller would return the\nfumble for a TD to give Ohio State a 22-21 lead. However, upon further review, the play\nwas controversially ruled incomplete, nullifying the touchdown for the Buckeyes, keeping\nthe game at 21-16. After trading touchdowns, including a 34-pass to Travis Etienne,\nwhere he once again knived through the defense for a TD, Ohio State would recieve the\nball down 29-23 with 1:49 left. After taking the ball down to Clemson's 23 yard line, the\nTigers intercepted Buckeyes QB Justin Fields for a second time to end the game. Fields\nhad only thrown 1 all season up to that point. Travis Etienne finished with 205 all-purpose\nyards and 3 TD, while Lawrence went for 259 passing yards and 2 TD, both going to\nEtienne, keeping Clemson alive as the defending champions.";
+    text(message, 6, 167);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(Clemson.primaryColor));
+};
+
+var topGame4 = function(){
+    currentScene = 30;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [0, 0, 10, 10, 6, 26 , 0, 13, 7, 0, 3, 23];
+    var game4 = new Game(Alabama.name, Georgia.name, hostSites[3], Alabama.primaryColor, Alabama.secondaryColor, Georgia.primaryColor, Georgia.secondaryColor, "January 8th, 2018");
+    game4.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "In this SEC clash for the National Championship, Georgia controlled the game early,\nholding Tide QB Jalen Hurts to just 21 yards in the first half, as the Dawgs too a 13-0\nlead. Entering the second half, Alabama coach Nick Saban decided to put in the true\nfreshman Tua Tagovailoa at QB. After Alabama scored, Georgia would respond with an\n80-yard touchdown pass to Mecole Hardman, and intercept Tua on the proceeding drive,\nputting the game essentially out of reach. With 6:21 left in the 3rd quarter at Alabama's\n39, up 20-7, Dawgs QB Jake Fromm immediatley threw a pick, giving the Tide life. After\na field goal, Alabama would recieve the ball down 13-20 with 7 minutes left. Tua found\nCalvin Ridley on 4th down to tie the game at 20. Alabama would miss the game-winning\nfield goal, sending the game to OT. After holding the Dawgs, to a field goal, Alabama\nrecieved the ball with a chance to win. After Tua took a sack, setting up 2nd & 26, he\ndelivered one of the most iconic throws in CFP history, a 41 yard TD to fellow true\nfreshman DeVonta Smith to end the game. Tua finished the game with 166 passing\nyards, 3 passing TD, and an INT in the comeback. At just 19, Tagovailoa went from\nunknown to hero in just one half, becoming the savoir to a program which had just won\nits 5th National Title in 9 years. Despite the game being in Atlanta, Georgia would end up\nlosing, extending the wait for their first National Championship since 1980.";
+    text(message, 6, 167);
+    homeButton.draw();
+    drawBitmoji(371, 16, 30, color(Alabama.primaryColor));
+};
+
+var topGame5 = function(){
+    currentScene = 31;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [7, 7, 7, 24, 0, 45, 14, 0, 10, 16, 0, 40];
+    var game5 = new Game(Alabama.name, Clemson.name, hostSites[1], Alabama.primaryColor, Alabama.secondaryColor, Clemson.primaryColor, Clemson.secondaryColor, "January 11th, 2016");
+    game5.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "Heisman Trophy winner Derrick Henry was looking to cap off a historic season with a win\nin the National Title. He started the scoring off going 50 yards untouched for a TD. The\nTigers and Tide would trade blows into the 4th quarter, including a 53 yard pass from\nAlabama QB Jake Coker to Tight End OJ Howard. Tied at 24 with 10 minutes remaining,\nAlabama coach Nick Saban drew up the gutsiest play of his career, a 'pop' onside kick\nto take possession back and momentum at the beginning of the 4th quarter. Coker would\nfind Howard again, this time for 51 yards and a TD. After surrendering a field goal, Tide\nrunning back Kenyan Drake would return the ensuing kickoff 95 yards, diving to the pylon\nto put the Tide up 38-27 with 7:30 to go. Clemson refused to go away, scoring on the\nensuing drive to make it 38-33. But the Tide would deliver the knockout punch, with\nHenry running in a 1 yard TD to make it 45-33. Desplte scoring, it was too late for the\nTigers, with Alabama winning 45-40. 40 total points were scored between both teams in\nthe 4th quarter alone. Clemson QB Deshaun Watson gave it his all, finishing with 478\ntotal yards and 4 TD, but the Tide were too much. Henry finished with 158 yards and 3\nTD, Howard finished with 208 yards and 2 TD on just 5 receptions, and Coker finsihed\nwith 335 yards and 2 TD, both going to Howard. Kenyan Drake finsihed with 218 yards\nand a TD, including 196 return yards, putting the Tide on top for the 4th time in 7 years.";
+    text(message, 4, 167);
+    homeButton.draw();
+    drawBitmoji(168, 16, 30, color(Alabama.primaryColor));
+};
+
+var topGame6 = function(){
+    currentScene = 32;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [7, 6, 0, 7, 7, 27, 7, 3, 0, 10, 0, 20];
+    var game6 = new Game(Michigan.name, Alabama.name, bowls[3], Michigan.primaryColor, Michigan.secondaryColor, Alabama.primaryColor, Alabama.secondaryColor, "January 1st, 2024");
+    game6.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "Entering the game, the Wolverines had lost back-to-back semifinals in heartbreaking\nfashion. After JJ McCarthy's first pass was intercepted, this seemed to be the case once\nagain. However, the play was overturned by an illegal touching penalty. Alabama would\nregain possession off a muffed punt, and strike first on a 34 yard Jase McClellan run.\nMichigan would respond with a TD of their own to Blake Corum on the following drive.\nMichigan would score another TD, but miss the PAT, and allow the Tide to score a field\ngoal before the half, making it 13-10 at halftime. After trading punts in the 3rd quarter,\nAlabama would take a 17-13 lead at the beginning of the 4th with another McClellan run.\nWith a chance to put the game away, Alabama stalled at Michigan's 34 yard line, settling\nfor a field goal and a 20-13 lead with 4:41 left. McCarthy would lead Michigan down the\nfield in 3 minutes to tie the game at 20. With 0:54 left, Alabama would punt back to the\nWolverines. However, returner Jake Thaw would muff the punt once again, but was able\nto recover it at his own 1 yard line, saving the season for Michigan. In OT, it took Michigan\njust 2 plays to score a TD with a 17 yard run by Blake Corum. On 4th & Goal from the 2\nyard line, Michigan's defense would stop Jalen Milroe, winning the game. Michigan held\nMilroe to just 116 passing yards and sacked him 6 times, while McCarthy finished with\n246 total yards and 3 TD, and Corum finishing with 118 all purpose yards and 2 TD.";
+    text(message, 4, 167);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(Michigan.primaryColor));
+};
+
+var topGame7 = function(){
+    currentScene = 33;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [7, 14, 10, 6, 0, 37, 7, 14, 0, 10, 0, 31];
+    var game7 = new Game(Washington.name, Texas.name, bowls[2], Washington.primaryColor, Washington.secondaryColor, Texas.primaryColor, Texas.secondaryColor, "January 1st, 2024");
+    game7.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+        var message = "Texas and Washignton both entered the game with powerful offenses that would be on\nfull display in the first half. Texas would match every Washington score on the ensuing\ndrive, incluidng regaining possession off a Washington muffed punt. Quarterbacks Quinn\nEwers of Texas and Michael Penix of Washington would battle back-and-forth, with the\ngame tied at 21 entering halftime. Washington's defense would begin to clamp down in\nthe second half, forcing 2 Texas fumbles, which the Huskies converted into a field goal.\nThe Huskies would hold a 34-21 lead until 7:23 left in the 4th, where they surrendered a\nTD to Adonai Mitchell. After trading field goals, Washington held the ball up 37-31 with \n1:09 to go. However, the Longhorns would force a quick 3 & out, giving Ewers one final \ndrive, down 6, with the ball at his own 31. After marching down the field, Texas held the\nball at the Huskie's 12 yard line with 15 seconds left. After 4 straight opportunties, Ewers\nwould fire one final shot to Mitchell in the endzone, but it was broken up by Washington\ncorner Jabbar Muhammad, sealing the win for the Huskies. Despite 372 total yards and\na TD, Ewers could not finish the comeback, failing to score on the game-defining final\nplay. Penix dominated with 430 passing yards and 2 TD. Huskies recievers Ja'Lynn Polk\nand Rome Odunze would finish with 122 and 125 yards respectively, with Polk scoring a\nTD. Washington's defense held firm on the final play, allowing the Huskies to survive.";
+    text(message, 4, 167);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(Washington.primaryColor));
+};
+
+var topGame8 = function(){
+    currentScene = 34;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [14, 7, 20, 10, 0, 51, 0, 6, 24, 15, 0, 45];
+    var game8 = new Game(TCU.name, Michigan.name, bowls[4], TCU.primaryColor, TCU.secondaryColor, Michigan.primaryColor, Michigan.secondaryColor, "December 31st, 2022");
+    game8.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "TCU wasted no time with their ambush of the Wolverines, holding firm on a goal line\nstand before returning an interception off JJ McCarthy 41 yards. The Frogs would allow a\nfield goal before 2 unanswered touchdowns put them up 21-3. At the half, TCU led 21-6,\nand it appeared as though their Cinderella run woudl continue without a hitch. However,\nthe Wolverines would come out energized, intercepting TCU QB Max Duggan to shift\nmomentum, scoring 10 unanswered to draw the game to 21-16. However, TCU would not\nonly score a TD on the ensuing drive, but would return another interception off McCarthy\nfor a TD, making the game 34-16 with 2:52 left in the 3rd quarter. Both teams would\nerupt in scoring, with 5 touchdowns scored in the manner of 3.5 minutes. The defining\nmoment of the game came with 13:07 left, when Duggan found reciever Quentin Johnston\non a drag route, where he broke a tackle and ran 76 yards for a TD to take a 48-38 lead,\nwhich completely drained the Wolverines of any life. Michigan still held a pulse when they\nrecieved the ball down 51-45 at their own 30 with 0:45 left. However, TCU's defense held\nthe Wolverines to a turnover on downs, keeping the Horned Frogs' Cinderella run alive.\nTCU RB Emari Demercado finished with 150 rushing yards and a TD, while Johnston\nfinsihed with 163 yards and a TD. Both Duggan and McCarthy finished with 2 INT, but\nTCU's ability to score off turnovers made the difference, halting Michigan's comeback.";
+    text(message, 4, 167);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(TCU.primaryColor));
+};
+
+var topGame9 = function(){
+    currentScene = 35;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [7, 17, 0, 18, 0, 42, 7, 21, 10, 3, 0, 41];
+    var game9 = new Game(Georgia.name, OhioState.name, bowls[5], Georgia.primaryColor, Georgia.secondaryColor, OhioState.primaryColor, OhioState.secondaryColor, "December 31st, 2022");
+    game9.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "Many considered this game to be the National Championship, as Ohio State and Georgia\nwere considered the best 2 teams in the country, despite meeting in only the semifinal.\nAfter trading touchdowns back-and-forth, Ohio State would intercept Stetson Bennett and\ntake a 21-7 lead. Georgia excuted the next 3 drives to perfection, scoring a TD in just 4\nplays, before holding the Buckeyes to a 3 & Out, before scoring another TD in just 3 plays\nto knot the game up at 21 in just 5 minutes. Neither team had an answer for the other on\ndefense, as Georgia was unable to stop CJ Stroud, Emeka Egbuka, and Marvin Harrison\nJr, while Ohio State could not stop the run from Georgia. After leading 28-24 at the half,\nOhio State came out swinging taking a 35-24 lead before stifling Georgia's offense. The\ngame-changing play came with 0:35 left, where CJ Stroud lofted a pass on 3rd & Goal to\nMarvin Harrison Jr. Dawgs safety Javon Bullard clearly hit Harrison with the crown of his\nhelmet, a targeting call, but it was overturned. Harrison would leave the game with a head\ninjury and not return, handicapping the Buckeye offense and focring them to settle for a\nfield goal. Georgia would rally, including a 76 yard TD to Arian Smith and a TD to Adonai\nMitchell with 0:54 left. Stroud put the Buckeyes within field goal range, but Noah Ruggles\nmissed the 50-yard field goal as the New Year's Ball dropped, nullifying Stoud's 348 yard,\n4 TD game. Bennett finished with 398 yards, 3 TD, an INT, and a win for the Dawgs.";
+    text(message, 4, 167);
+    homeButton.draw();
+    drawBitmoji(359, 16, 30, color(Georgia.primaryColor));
+};
+
+var topGame10 = function(){
+    currentScene = 36;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textSize(10);
+    scores = [0, 7, 7, 21, 0, 35, 7, 7, 10, 7, 0, 31];
+    var game10 = new Game(Clemson.name, Alabama.name, hostSites[2], Clemson.primaryColor, Clemson.secondaryColor, Alabama.primaryColor, Alabama.secondaryColor, "January 9th, 2017");
+    game10.display();
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message = "Alabama opened up the highly-anticipated National Championship rematch with 2 TD\nfrom Bo Scarbrough, one from 25 yards, and one form 37 yards. Scarbrough would run\nfor 93 yards and 2 TD before breaking his leg in the 3rd. Alabama was unable to replace\nhis offensive production in the second half. After taking a 24-14 lead off a 68 pass to OJ\nHoward, Clemson would immediately respond with a TD to make it 24-21, and eventually\n28-24 with 4:38 left in the 4th quarter. After a 30 yard TD run by Jalen Hurts, Clemson\nwould get the ball down 3,with 2 minutes left. Deshaun Watson's legacy rode on his final\n drive as a Tiger, and he delivered, marching the Clemosn down the field, taking them to\nAlabama's 2 yard line. With 1 second on the clock, he found fellow Clemson legend\nHunter Renfrow in the endzone for a touchdown, a storybook ending to a historic career.\nClemson held Jalen Hurts to just 131 passing yards, while Watson finished his final game\nwith 420 passing yards, 46 rushing yards, and 4 total TD. He had 4 recievers finish with\nmore than 90 yards, as Jordan Leggett, Mike Williams, Deon Cain, and Hunter Renfrow\nfinishing with 95, 94, 94, and 92 respectively, with Williams finishing with 1 TD and Hunter\nscoring 2, including the game-winner. Clemson ended a 35-year title drought with an all\ntime performance by their seniors, dethroning Alabama in the National Championship\nsequel.";
+    text(message, 4, 167);
+    homeButton.draw();
+    drawBitmoji(378, 16, 30, color(Clemson.primaryColor));
+};
+// to here
+
+
+// creates pages that display a custom message and teams for each controversy. Called when each button is clicked.
+
+//from here
+var controversy2014 = function(){
+    currentScene = 37;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message1 = "In: #4 Ohio State (12-1, Big Ten Champion)\n\nOut: \n#5 Baylor (11-1, Big XII Co-Champion)\n#6 TCU (11-1, Big XII Co-Champion)";
+    var message2 = "Despite being down to their 3rd string quarterback, Ohio State demolished\nWisconsin in the Big Ten Championship, enough for the committee to move\nthe Buckeyes ahead of Big XII co-champions TCU and Baylor. After entering\nthe weekend at #3, TCU would fall to #6 in the rankings, behind Baylor. The \nBig XII did not host a conference championship at the time, so TCU did not\nwin the conference outright. Many felt that TCU was snubbed, as Ohio State\nhad lost at home to an unranked Virginia Tech by 14, who finished the year\nwith 6 wins, whereas TCU had lost by 3 on the road to #5 Baylor. This was\nthe catalyst for the Big XII to re-introduce a conference championship game,\nas the NCAA would lower the required amount of teams in a conference for\na title game from 12 to 10.";
+    textSize(17);
+    text(message1, 18, 79);
+    textSize(11.5);
+    text(message2, 5, 207);
+    homeButton.draw();
+    drawBitmoji(360, 17, 36, color(OhioState.primaryColor));
+};
+
+var controversy2016 = function(){
+    currentScene = 38;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+       textAlign(LEFT, LEFT);
+    var message1 = "In: #3 Ohio State (11-1)\n\nOut: #5 Penn State (11-2, Big Ten Champion)";
+    var message2 = "Ohio State became the first team in the playoff era to make the\nplayoff without a conference championship. Penn State won the\ndivision and the Big Ten Championship against Wisconsin after\ndefeating Ohio State 24-21. However, Penn State dropped 2\ngames to Pittsburgh and Michigan. Over the history of the playoff,\nno team ever made the top 4 with 2 losses. Penn State was\nexcluded from the playoff, and Ohio State went on to lose it's\nsemifinal game 31-0 to Clemson, which only furthered shouts from\nPenn State fans that they had been robbed of a spot.";
+    textSize(18.5);
+    text(message1, 18, 95);
+    textSize(13.2);
+    text(message2, 11, 210);
+    homeButton.draw();
+    drawBitmoji(342, 35, 55, color(OhioState.primaryColor));
+};
+
+var controversy2017 = function(){
+    currentScene = 39;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message1 = "In: #4 Alabama (11-1)\n\nOut: \n#5 Ohio State (11-2, Big Ten Champion)\n#6 Wisconsin (12-1)\n#12 UCF (13-0, American Champion)";
+    var message2 = "After being ranked in the top 2 for the entire regular season, Alabama lost by\nmultiple scores to Auburn in the Iron Bowl. Despite winning the Big Ten, Ohio State\nmissed the top 4. Auburn defeated both Georgia and Alabama during the regular\nseason, being ranked at #2 before losing in the SEC Championship to Georgia.\nUCF defeated Auburn in the Peach Bowl, who had defeated both Georgia and\nAlabama, the 2 teams in the National Championship. After this UCF claimed a\nNational Championship despite not playing in the playoff, as they were the only \nremaining undefeated FBS team. Alabama went on to silence the doubters by\nwinning the National Championship, however, UCF is the only team in the playoff\nera to claim a National Championship despite not playing in the playoff. Wisconsin\nfinished the regular season undefeated before losing to Ohio State in the Big Ten\nChampionship, finishing with 1 loss and missing the playoff, leaving fans feeling\nlike they deserved a spot.";
+    textSize(15);
+    text(message1, 18, 73);
+    textSize(10.5);
+    text(message2, 12, 200);
+    homeButton.draw();
+    drawBitmoji(325, 31, 55, color(Alabama.primaryColor));
+};
+
+var controversy2020 = function(){
+    currentScene = 40;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    textAlign(LEFT, LEFT);
+    var message1 = "In: #3 Ohio State (6-0, Big Ten Champion)\n#4 Notre Dame (10-1)\nOut: \n#5 Texas A&M (8-1)\n#8 Cincinnati (9-0, American Champion)\n#12 Coastal Carolina (11-0, Sun Belt Champion)";
+    var message2 = "A large number of controversies occured this year. First, the Big Ten\neliminated the 6-game requirement to participate in the Conference\nChampionship, which they would win against Northwestern. Notre Dame had\nlost by 24 in the ACC Championship to Clemson, who they had beat in the\nregular season. Texas A&M's only loss was to #1 Alabama, leaving Aggies\nfans believing that they deserved a rematch in the playoff. Additionally,\nundefeated Group of 5 Champions Cincinnati and Coastal Carolina believed\nthat they deserved a shot at the playoff, yet did not recieve a bid. ";
+    textSize(15);
+    text(message1, 18, 84);
+    textSize(11.25);
+    text(message2, 8, 241);
+    homeButton.draw();
+    drawBitmoji(325, 31, 55, color(OhioState.primaryColor));
+    drawBitmoji(368, 31, 55, color(NotreDame.primaryColor));
+};
+
+var controversy2023 = function(){
+    currentScene = 41;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+        textAlign(LEFT, LEFT);
+    var message1 = "In: #3 Texas (12-1, Big XII Champion)\n#4 Alabama (12-1, SEC Champion)\nOut: \n#5 Florida State (13-0, ACC Champion)\n#6 Georgia (12-1)";
+    var message2 = "After Texas defeated Alabama during the regular season, the Longhorns were\nlocked ahead of the Tide in the rankings. However, after Alabama defeated\nGeorgia, a team coming off back-to-back National Championships and a 28\ngame win streak, there were questions to if an SEC Champion could be left out.\nFlorida State finished 13-0 despite losing star QB Jordan Travis and backup Tate\nRodemaker, and winning the ACC Championship in unimpressive fashion, with\nonly 55 passing yards on the day in a 10-point win vs Louisville. Florida State was\nthe first and only undefeated Power 5 team to miss the playoff, with the committee\nstating that Travis' injury changed the outlook of the team significantly, hindering\nthier ability to compete. Georgia fans, coaches, and players clamored that the\nBulldogs deserved to be in, as they felt as though they were a top 4 team in the\ncountry. Texas and Alabama would both lose their semifinals. Florida State and\nGeorgia would end up playing in the Orange Bowl, where Georgia won 63-3,\nsilencing most who claimed that FSU was robbed. Despite the 60-point loss,\nFSU claims 'unconquered' status, handing out '13-0' rings, after finishing 13-1,\nrefusing to validate a loss in a game they felt as though they shouldn't have been in.";
+    textSize(15);
+    text(message1, 18, 69);
+    textSize(10.25);
+    text(message2, 12, 173);
+    homeButton.draw();
+    drawBitmoji(325, 31, 55, color(Texas.primaryColor));
+    drawBitmoji(368, 31, 55, color(Alabama.primaryColor));
+};
+//to here
+
+// mouse clicked function adding funcitonality to each scene. Handles each buttons handleMouseClicked and allows the user to switch between screens. Works with every scene 0 - 41
+mouseClicked = function(){
+    if (currentScene === 0){
+        startButton.handleMouseClick();
+    }
+    
+    else if (currentScene === 1){
+        listButton.handleMouseClick();
+        bracketsButton.handleMouseClick();
+        topGamesButton.handleMouseClick();
+        controversiesButton.handleMouseClick();
+        definitionButton.handleMouseClick();
+    }
+    else if (currentScene === 2){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2015Button.handleMouseClick();
+    }
+    else if (currentScene === 3){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2016Button.handleMouseClick();
+    }
+    else if (currentScene === 4){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2017Button.handleMouseClick();
+    }
+    else if (currentScene === 5){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2018Button.handleMouseClick();
+    }
+    else if (currentScene === 6){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2019Button.handleMouseClick();
+    }
+    else if (currentScene === 7){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2020Button.handleMouseClick();
+    }
+    else if (currentScene === 8){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2021Button.handleMouseClick();
+    }
+    else if (currentScene === 9){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2022Button.handleMouseClick();
+    }
+    else if (currentScene === 10){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2023Button.handleMouseClick();
+    }
+    else if (currentScene === 11){
+        homeButton.handleMouseClick();
+        backButton.handleMouseClick();
+        champ2024Button.handleMouseClick();
+    }
+    else if (currentScene === 12){
+        homeButton.handleMouseClick();
+        byYear2015Button.handleMouseClick();
+        byYear2016Button.handleMouseClick();
+        byYear2017Button.handleMouseClick();
+        byYear2018Button.handleMouseClick();
+        byYear2019Button.handleMouseClick();
+        byYear2020Button.handleMouseClick();
+        byYear2021Button.handleMouseClick();
+        byYear2022Button.handleMouseClick();
+        byYear2023Button.handleMouseClick();
+        byYear2024Button.handleMouseClick();
+    }
+    else if (currentScene === 13){
+        homeButton.handleMouseClick();
+        bracket2015Button.handleMouseClick();
+        bracket2016Button.handleMouseClick();
+        bracket2017Button.handleMouseClick();
+        bracket2018Button.handleMouseClick();
+        bracket2019Button.handleMouseClick();
+        bracket2020Button.handleMouseClick();
+        bracket2021Button.handleMouseClick();
+        bracket2022Button.handleMouseClick();
+        bracket2023Button.handleMouseClick();
+        bracket2024Button.handleMouseClick();
+    }
+    else if (currentScene === 14){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 15){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 16){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 17){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 18){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 19){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 20){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 21){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 22){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 23){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 24){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 25){
+        homeButton.handleMouseClick();
+        topGames1Button.handleMouseClick();
+        topGames2Button.handleMouseClick();
+        topGames3Button.handleMouseClick();
+        topGames4Button.handleMouseClick();
+        topGames5Button.handleMouseClick();
+        topGames6Button.handleMouseClick();
+        topGames7Button.handleMouseClick();
+        topGames8Button.handleMouseClick();
+        topGames9Button.handleMouseClick();
+        topGames10Button.handleMouseClick();
+    }
+    else if (currentScene === 26){
+        homeButton.handleMouseClick();
+        controversies2014Button.handleMouseClick();
+        controversies2016Button.handleMouseClick();
+        controversies2017Button.handleMouseClick();
+        controversies2020Button.handleMouseClick();
+        controversies2023Button.handleMouseClick();
+    }
+    else if (currentScene === 27){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 28){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 29){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 30){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 31){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 32){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 33){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 34){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 35){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 36){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 37){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 38){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 39){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 40){
+        homeButton.handleMouseClick();
+    }
+    else if (currentScene === 41){
+        homeButton.handleMouseClick();
+    }
+    
+};
+
+// draw function that allows the user to see each individual screen. For each individual screen, it calls a new function, each of which is defined above. For each scene, one individual function is called.
+draw = function() {
+    if (currentScene === 0) {
+        splashScreen();
+    }
+    else if (currentScene === 1){
+        homeScreen();
+    }
+    else if (currentScene === 2){
+        yearOne();
+    }
+    else if (currentScene === 3){
+        yearTwo();
+    }
+    else if (currentScene === 4){
+        yearThree();
+    }
+    else if (currentScene === 5){
+        yearFour();
+    }
+    else if (currentScene === 6){
+        yearFive();
+    }
+    else if (currentScene === 7){
+        yearSix();
+    }
+    else if (currentScene === 8){
+        yearSeven();
+    }
+    else if (currentScene === 9){
+        yearEight();
+    }
+    else if (currentScene === 10){
+        yearNine();
+    }
+    else if (currentScene === 11){
+        yearTen();
+    }
+    else if (currentScene === 12){
+        listOfChamps();
+    }
+    else if (currentScene === 13){
+        bracketList();
+    }
+    else if (currentScene === 14){
+        definition();
+    }
+    else if (currentScene === 15){
+        osu2015();
+    }
+    else if (currentScene === 16){
+        alabama2016();
+    }
+    else if (currentScene === 17){
+        clemson2017();
+    }
+    else if (currentScene === 18){
+        alabama2018();
+    }
+    else if (currentScene === 19){
+        clemson2019();
+    }
+    else if (currentScene === 20){
+        lsu2020();
+    }
+    else if (currentScene === 21){
+        alabama2021();
+    }
+    else if (currentScene === 22){
+        georgia2022();
+    }
+    else if (currentScene === 23){
+        georgia2023();
+    }
+    else if (currentScene === 24){
+        michigan2024();
+    }
+    else if (currentScene === 25){
+        top10Games();
+    }
+    else if (currentScene === 26){
+        topControversies();
+    }
+     else if (currentScene === 27){
+        topGame1();
+    }
+    else if (currentScene === 28){
+        topGame2();
+    }
+    else if (currentScene === 29){
+        topGame3();
+    }
+    else if (currentScene === 30){
+        topGame4();
+    }
+    else if (currentScene === 31){
+        topGame5();
+    }
+    else if (currentScene === 32){
+        topGame6();
+    }
+    else if (currentScene === 33){
+        topGame7();
+    }
+    else if (currentScene === 34){
+        topGame8();
+    }
+    else if (currentScene === 35){
+        topGame9();
+    }
+    else if (currentScene === 36){
+        topGame10();
+    }
+    else if (currentScene === 37){
+        controversy2014();
+    }
+    else if (currentScene === 38){
+        controversy2016();
+    }
+    else if (currentScene === 39){
+        controversy2017();
+    }
+    else if (currentScene === 40){
+        controversy2020();
+    }
+    else if (currentScene === 41){
+        controversy2023();
+    }
+};
+
+
